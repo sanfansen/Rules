@@ -1,0 +1,150 @@
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7897
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: :9090
+clash-for-android:
+  append-system-dns: false
+dns:
+  enable: true
+  # listen: 0.0.0.0:53
+  ipv6: false
+  default-nameserver: [223.5.5.5, 119.29.29.29]
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+  nameserver-policy: {"*.google.com": 8.8.8.8, "*.tw": 1.1.1.1, testflight.apple.com: 8.8.8.8, "*.tmall.com": 223.5.5.5, "*.taobao.com": 223.5.5.5, "*.alicdn.com": 223.5.5.5, "*.aliyun.com": 223.5.5.5, "*.alipay*.com": 223.5.5.5, "*.alibaba*.com": 223.5.5.5, "*.alimama*.com": 223.5.5.5, "*.qq.com": 114.114.114.114, "*.tencent.com": 114.114.114.114, "*.weixin.com": 114.114.114.114, "*.qpic.cn": 114.114.114.114, "*.jd.com": 114.114.114.114, "*.bilibili.com": 114.114.114.114, hdslb.com: 114.114.114.114, "*.163.com": 119.29.29.29, "*.126.com": 119.29.29.29, "*.126.net": 114.114.114.114, "*.127.net": 114.114.114.114, "*.netease.com": 114.114.114.114, "*.10010.com": 114.114.114.114, "*.unicompayment.com": 114.114.114.114, "*.ximalaya.com": 114.114.114.114, "*.baidu.com": 114.114.114.114, "*.bdstatic.com": 114.114.114.114}
+  nameserver: [https://doh.pub/dns-query, https://dns.alidns.com/dns-query]
+  fallback: [https://doh-pure.onedns.net/dns-query, https://ada.openbld.net/dns-query, https://223.5.5.5/dns-query, https://223.6.6.6/dns-query, https://doh.dns.sb/dns-query, https://dns.cloudflare.com/dns-query, https://dns.twnic.tw/dns-query, tls://8.8.4.4:853, https://1.1.1.1/dns-query]
+  fallback-filter: {geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32]}
+
+proxies:
+proxy-groups:
+ - { name: 'Proxy', type: select, proxies: ["failover"] }
+ - { name: 'AI Suite', type: select, proxies: [Proxy] }
+ - { name: 'YouTube', type: select, proxies: [Proxy] }
+ - { name: 'Netflix', type: select, proxies: [Proxy] }
+ - { name: 'Microsoft', type: select, proxies: [DIRECT,Proxy] }
+ - { name: 'Apple', type: select, proxies: [DIRECT,Proxy] }
+ - { name: 'Crypto', type: select, proxies: [Proxy] }
+ - { name: 'TikTok', type: select, proxies: [Proxy,DIRECT] }
+ - { name: 'Steam', type: select, proxies: [Proxy,DIRECT] }
+ - { name: 'AdBlock', type: select, proxies: [DIRECT,REJECT,Proxy,/吊/] }
+ - { name: 'Others', type: select, proxies: [Proxy,DIRECT,/吊/] }
+ - { name: "failover", type: fallback, proxies: [], url: "http://www.gstatic.com/generate_204", interval: 300 }
+
+
+
+rules:
+  - RULE-SET,AdBlock,AdBlock
+  - RULE-SET,Special,DIRECT
+  - RULE-SET,Speedtest,DIRECT
+  - RULE-SET,Domestic,DIRECT
+  - RULE-SET,Domestic IPs,DIRECT
+  - RULE-SET,AI Suite,AI Suite
+  - RULE-SET,Netflix,Netflix
+  - RULE-SET,YouTube,YouTube
+  - RULE-SET,Crypto,Crypto
+  - RULE-SET,Apple,Apple
+  - RULE-SET,Microsoft,Microsoft
+  - RULE-SET,Steam,Steam
+  - RULE-SET,TikTok,TikTok
+  - RULE-SET,PROXY,Proxy
+  - RULE-SET,LAN,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,Others
+
+rule-providers:
+  AdBlock:
+    type: http
+    behavior: classical
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/AdBlock.yaml'
+    path: ./Rules/AdBlock
+    interval: 2592000
+  Special:
+    type: http
+    behavior: classical
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Special.yaml'
+    path: ./Rules/Special
+    interval: 2592000  
+  PROXY:
+    type: http
+    behavior: classical
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Proxy.yaml'
+    path: ./Rules/Proxy
+    interval: 2592000
+  Domestic:
+    type: http
+    behavior: classical
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Domestic.yaml'
+    path: ./Rules/Domestic
+    interval: 2592000
+  Domestic IPs:
+    type: http
+    behavior: classical
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Domestic%20IPs.yaml'
+    path: ./Rules/Domestic_IPs
+    interval: 2592000
+  LAN:
+    type: http
+    behavior: classical
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/LAN.yaml'
+    path: ./Rules/LAN
+    interval: 2592000
+  Netflix:
+    type: http
+    behavior: classical
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Media/Netflix.yaml'
+    path: ./Rules/Media/Netflix
+    interval: 2592000
+  YouTube:
+    type: http
+    behavior: classical
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Media/YouTube.yaml'
+    path: ./Rules/Media/YouTube
+    interval: 2592000
+  Crypto:
+    type: http
+    behavior: classical
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Crypto.yaml'
+    path: ./Rules/Crypto
+    interval: 2592000   
+  Steam:
+    type: http
+    behavior: classical
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Steam.yaml'
+    path: ./Rules/Steam
+    interval: 2592000
+  TikTok:
+    type: http
+    behavior: classical
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/TikTok.yaml'
+    path: ./Rules/TikTok
+    interval: 2592000
+  Speedtest:
+    type: http
+    behavior: classical
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Speedtest.yaml'
+    path: ./Rules/Speedtest
+    interval: 2592000
+  Microsoft:
+    type: http
+    behavior: classical
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Microsoft.yaml'
+    path: ./Rules/Microsoft
+    interval: 2592000
+  AI Suite:
+    type: http
+    behavior: classical
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/AI%20Suite.yaml'
+    path: ./Rules/AI Suite
+    interval: 2592000
+  Apple:
+    type: http
+    behavior: classical
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Apple.yaml'
+    path: ./Rules/Apple
+    interval: 2592000
