@@ -14,6 +14,10 @@ payload:
   - DOMAIN,swcdn.apple.com
   - DOMAIN,updates-http.cdn-apple.com
 
+  # > emby
+  - DOMAIN,jp.nomaba.com
+  - DOMAIN,sgp.nomaba.com
+  - DOMAIN,us.nomaba.com
   # > Epic
   - DOMAIN-KEYWORD,epicgames
 
@@ -103,6 +107,7 @@ payload:
   - PROCESS-NAME,transmission-qt.exe
   - PROCESS-NAME,uTorrent.exe
   - PROCESS-NAME,WebTorrent.exe
+  - PROCESS-NAME,aria2
   - PROCESS-NAME,aria2c
   - PROCESS-NAME,fdm
   - PROCESS-NAME,Folx

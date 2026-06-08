@@ -1,4 +1,12 @@
 payload:
+  #TrustWallet
+  - DOMAIN-SUFFIX,trustwallet.com
+  - DOMAIN-SUFFIX,walletconnect.org
+  #TRON
+  - DOMAIN-SUFFIX,tronads.io
+  - DOMAIN-SUFFIX,tronscanapi.com
+  - DOMAIN-SUFFIX,twnodes.com
+  
   # > Forum
   - DOMAIN-SUFFIX,bitcointalk.org
 
@@ -77,6 +85,8 @@ payload:
   - DOMAIN-SUFFIX,bscscan.com
   - PROCESS-NAME,Binance.exe
   - DOMAIN-KEYWORD,binance
+  - DOMAIN-KEYWORD,mokexapp
+  - DOMAIN-KEYWORD,saasexch
 
   # > Huobi
   - DOMAIN-SUFFIX,hbabit.com
