@@ -42,8 +42,6 @@ rules:
   - RULE-SET,AdBlock,AdBlock
   - RULE-SET,Special,DIRECT
   - RULE-SET,Speedtest,DIRECT
-  - RULE-SET,Domestic,DIRECT
-  - RULE-SET,Domestic IPs,DIRECT
   - RULE-SET,AI Suite,AI Suite
   - RULE-SET,Netflix,Netflix
   - RULE-SET,YouTube,YouTube
@@ -52,8 +50,10 @@ rules:
   - RULE-SET,Microsoft,Microsoft
   - RULE-SET,Steam,Steam
   - RULE-SET,TikTok,TikTok
-  - RULE-SET,PROXY,Proxy
+  - RULE-SET,TopBlock,Proxy
   - RULE-SET,LAN,DIRECT
+  - RULE-SET,Domestic,DIRECT
+  - RULE-SET,Domestic IPs,DIRECT  
   - GEOIP,CN,DIRECT
   - MATCH,Others
 
@@ -69,31 +69,25 @@ rule-providers:
     behavior: classical
     url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Special.yaml'
     path: ./Rules/Special
-    interval: 2592000  
-  PROXY:
+    interval: 2592000 
+  Speedtest:
     type: http
     behavior: classical
-    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Proxy.yaml'
-    path: ./Rules/Proxy
-    interval: 2592000
-  Domestic:
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Speedtest.yaml'
+    path: ./Rules/Speedtest
+    interval: 2592000      
+  AI Suite:
     type: http
     behavior: classical
-    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Domestic.yaml'
-    path: ./Rules/Domestic
+    url: 'https://js.q-jr.com/gh/VPSDance/ai-proxy-rules@main/rules/clash/all.yaml'
+    path: ./Rules/AI Suite
     interval: 2592000
-  Domestic IPs:
+  Apple:
     type: http
     behavior: classical
-    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Domestic%20IPs.yaml'
-    path: ./Rules/Domestic_IPs
-    interval: 2592000
-  LAN:
-    type: http
-    behavior: classical
-    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/LAN.yaml'
-    path: ./Rules/LAN
-    interval: 2592000
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Apple.yaml'
+    path: ./Rules/Apple
+    interval: 2592000      
   Netflix:
     type: http
     behavior: classical
@@ -124,27 +118,33 @@ rule-providers:
     url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/TikTok.yaml'
     path: ./Rules/TikTok
     interval: 2592000
-  Speedtest:
-    type: http
-    behavior: classical
-    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Speedtest.yaml'
-    path: ./Rules/Speedtest
-    interval: 2592000
   Microsoft:
     type: http
     behavior: classical
     url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Microsoft.yaml'
     path: ./Rules/Microsoft
-    interval: 2592000
-  AI Suite:
+    interval: 2592000    
+  TopBlock:
     type: http
     behavior: classical
-    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/AI%20Suite.yaml'
-    path: ./Rules/AI Suite
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Proxy.yaml'
+    path: ./Rules/Proxy
     interval: 2592000
-  Apple:
+  Domestic:
     type: http
     behavior: classical
-    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Apple.yaml'
-    path: ./Rules/Apple
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Domestic.yaml'
+    path: ./Rules/Domestic
     interval: 2592000
+  Domestic IPs:
+    type: http
+    behavior: classical
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/Domestic%20IPs.yaml'
+    path: ./Rules/Domestic_IPs
+    interval: 2592000
+  LAN:
+    type: http
+    behavior: classical
+    url: 'https://js.q-jr.com/gh/sanfansen/Rules@main/Clash/Provider/LAN.yaml'
+    path: ./Rules/LAN
+    interval: 2592000         
