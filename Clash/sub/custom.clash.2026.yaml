@@ -17,8 +17,8 @@ dns:
   fake-ip-range: 198.18.0.1/16
   use-hosts: true
   nameserver-policy: {"*.papstore.xyz": 223.5.5.5, "*.google.com": 8.8.8.8, "*.tw": 1.1.1.1, testflight.apple.com: 8.8.8.8, "*.tmall.com": 223.5.5.5, "*.taobao.com": 223.5.5.5, "*.alicdn.com": 223.5.5.5, "*.aliyun.com": 223.5.5.5, "*.alipay*.com": 223.5.5.5, "*.alibaba*.com": 223.5.5.5, "*.alimama*.com": 223.5.5.5, "*.qq.com": 114.114.114.114, "*.tencent.com": 114.114.114.114, "*.weixin.com": 114.114.114.114, "*.qpic.cn": 114.114.114.114, "*.jd.com": 114.114.114.114, "*.bilibili.com": 114.114.114.114, hdslb.com: 114.114.114.114, "*.163.com": 119.29.29.29, "*.126.com": 119.29.29.29, "*.126.net": 114.114.114.114, "*.127.net": 114.114.114.114, "*.netease.com": 114.114.114.114, "*.10010.com": 114.114.114.114, "*.unicompayment.com": 114.114.114.114, "*.ximalaya.com": 114.114.114.114, "*.baidu.com": 114.114.114.114, "*.bdstatic.com": 114.114.114.114}
-  nameserver: [https://doh.pub/dns-query, https://dns.alidns.com/dns-query]
-  fallback: [https://doh-pure.onedns.net/dns-query, https://ada.openbld.net/dns-query, https://223.5.5.5/dns-query, https://223.6.6.6/dns-query, https://doh.dns.sb/dns-query, https://dns.cloudflare.com/dns-query, https://dns.twnic.tw/dns-query, tls://8.8.4.4:853, https://1.1.1.1/dns-query]
+  nameserver: [https://dns.alidns.com/dns-query, https://doh.pub/dns-query]
+  fallback: [https://223.5.5.5/dns-query, https://223.6.6.6/dns-query, https://doh-pure.onedns.net/dns-query, https://ada.openbld.net/dns-query, https://doh.dns.sb/dns-query, https://dns.cloudflare.com/dns-query, https://dns.twnic.tw/dns-query, tls://8.8.4.4:853, https://1.1.1.1/dns-query]
   fallback-filter: {geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32]}
 
 proxies:
