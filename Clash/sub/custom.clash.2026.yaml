@@ -79,7 +79,7 @@ rule-providers:
   AI Suite:
     type: http
     behavior: classical
-    url: 'https://js.q-jr.com/gh/VPSDance/ai-proxy-rules@main/rules/clash/all.yaml'
+    url: 'https://js.q-jr.com/gh/VPSDance/ai-proxy-rules@main/rules/clash/global.yaml'
     path: ./Rules/AI Suite
     interval: 2592000
   Apple:
